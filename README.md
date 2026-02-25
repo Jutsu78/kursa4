@@ -12,12 +12,11 @@ project for KPI
 Стек технологій
 JavaScript (Node.js)
 
-Основний запланований функціонал 
-Проект розробляється з інтеграцією ключових концепцій:
-* Генерація потоку даних у реальному часі.
-* Оптимізація обчислень (кешування).
-* Черга з пріоритетами для обробки транзакцій.
-* Логування подій та базовий захист доступу.
+Основний запланований функціонал: 
+ Генерація потоку даних у реальному часі.
+ Оптимізація обчислень (кешування).
+ Черга з пріоритетами для обробки транзакцій.
+ Логування подій та базовий захист доступу.
 
 
 
@@ -33,13 +32,8 @@ Expected result: A monitoring system that processes and displays changes in exch
 Technology stack
 JavaScript (Node.js)
 
-Main planned functionality
-The project is being developed with the integration of key concepts:
-
+Main planned functionality:
 Real-time data stream generation.
-
 Computation optimization (caching).
-
 Priority queue for transaction processing.
-
 Event logging and basic access protection.
