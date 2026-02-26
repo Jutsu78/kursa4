@@ -1,0 +1,20 @@
+{
+  "name": "kursa4",
+  "version": "1.0.0",
+  "description": "project for KPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jutsu78/kursa4.git"
+  },
+  "keywords": [],
+  "author": "Taraiev Oleksii",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jutsu78/kursa4/issues"
+  },
+  "homepage": "https://github.com/Jutsu78/kursa4#readme"
+}
