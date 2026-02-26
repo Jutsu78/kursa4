@@ -1,8 +1,10 @@
 
 function* generateTransactions() { 
-    const transition = Math.random() 
-    amount = Math.floor(Math.random() * 1000) + 1
-    currency = ['USD', 'EUR', 'UAH', 'BTC'][Math.floor(Math.random() * 4)]
-    yield { transition, amount, currency}
-};
+    while (true) {
+    const transaction = Math.random() 
+  const amount = Math.floor(Math.random() * 1000) + 1
+    const currency = ['USD', 'EUR', 'UAH', 'BTC'][Math.floor(Math.random() * 4)]
+    yield { transaction, amount, currency}
+}
 
+}
