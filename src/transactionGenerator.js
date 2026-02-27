@@ -12,3 +12,14 @@ async function* generateTransactions() {
 }
 
 }
+
+
+
+async function StartSystem() {
+   const liveTransactions = generateTransactions()
+    for await (const transaction of liveTransactions) {
+        console.log('New transaction:', transaction)
+    }
+  }
+
+StartSystem();
