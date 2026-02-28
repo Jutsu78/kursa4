@@ -13,8 +13,12 @@ return result;
 }
 
 
-exchangeRates = {USD: 41.5, EUR: 45.2, BTC: 3500000, UAH: 1};
+const exchangeRates = {USD: 41.5, EUR: 45.2, BTC: 3500000, UAH: 1};
 function convertor(amount, currency) {
+console.log('Calculating...', amount, currency);
 currency = exchangeRates[currency];
 return amount * currency;
 }
+
+const memoizedConvert = memoize(convertor);
+module.exports = memoizedConvert;
