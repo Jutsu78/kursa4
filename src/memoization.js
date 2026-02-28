@@ -11,3 +11,10 @@ cache.set(key, result);
 return result;
 }
 }
+
+
+exchangeRates = {USD: 41.5, EUR: 45.2, BTC: 3500000, UAH: 1};
+function convertor(amount, currency) {
+currency = exchangeRates[currency];
+return amount * currency;
+}
