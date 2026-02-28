@@ -1,4 +1,6 @@
 
+const memoizedConvert = require('./memoization');
+
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function* generateTransactions() { 
@@ -18,7 +20,8 @@ async function* generateTransactions() {
 async function StartSystem() {
    const liveTransactions = generateTransactions()
     for await (const transaction of liveTransactions) {
-        console.log('New transaction:', transaction)
+      const amountInUAH = memoizedConvert(transaction.amount, transaction.currency);
+        console.log('New transaction:', transaction, 'Amount in UAH:', amountInUAH)
     }
   }
 
