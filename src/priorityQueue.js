@@ -6,15 +6,21 @@ this.regularQueue = [];
 }
 
 enqueue(transaction) {
-if (transaction.amount > 1000) 
+if (transaction.amount > 1000) {
 this.vipQueue.push(transaction);
- else this.regularQueue.push(transaction);
-
-dequeue() 
-if (this.vipQueue.lenght > 0)
+ } else {
+ this.regularQueue.push(transaction);
+ }
+}
+ dequeue() {
+if (this.vipQueue.length > 0) {
 return this.vipQueue.shift();
-else if (this.regularQueue.lenght > 0)
+} else if (this.regularQueue.length > 0) {
 return this.regularQueue.shift();
+}
+
 console.log("Queue is empty");
+ }
 }
-}
+
+module.exports = priorityQueue;
