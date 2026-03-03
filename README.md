@@ -18,7 +18,9 @@ JavaScript (Node.js)
  Черга з пріоритетами для обробки транзакцій.
  Логування подій та базовий захист доступу.
 
-
+Як запустити?
+Для запуску генератора транзакцій відкрийте термінал у кореневій папці проєкту та виконайте команду
+npm start
 
 
 This project was completed by a 1st-year student of Igor Sikorsky KPI, Oleksii Taraiev
@@ -37,3 +39,7 @@ Real-time data stream generation.
 Computation optimization (caching).
 Priority queue for transaction processing.
 Event logging and basic access protection.
+
+How to run?
+To start the transaction generator, open the terminal in the root directory of the project and run the following command
+npm start
