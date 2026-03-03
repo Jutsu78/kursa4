@@ -2,8 +2,9 @@
   "name": "kursa4",
   "version": "1.2.0",
   "description": "project for KPI",
-  "main": "index.js",
+  "main": "src/transactionGenerator.js",
   "scripts": {
+    "start": "node src/transactionGenerator.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
