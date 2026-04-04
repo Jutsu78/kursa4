@@ -5,7 +5,7 @@ class priorityQueue {
     }
 
     enqueue(item, priority) {
-        const element = { item, priority};
+        const element = { item, priority };
         let added = false;
 
         for (let i = 0; i < this.queue.length; i++) {
@@ -15,7 +15,22 @@ class priorityQueue {
                 break;
             }
         }
-    
+
+
+        if (!added) {
+            this.queue.push(element);
+        }
 
     }
+
+    dequeue() {
+        if (this.queue.length === 0) {
+            console.log("Queue is empty");
+            return null;
+        }
+
+        return this.queue.pop().item;
+    }
 }
+
+module.exports = priorityQueue;
