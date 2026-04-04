@@ -1,26 +1,21 @@
 
 class priorityQueue {
     constructor() {
-        this.vipQueue = [];
-        this.regularQueue = [];
+        this.queue = [];
     }
 
-    enqueue(transaction) {
-        if (transaction.amount > 1000) {
-            this.vipQueue.push(transaction);
-        } else {
-            this.regularQueue.push(transaction);
-        }
-    }
-    dequeue() {
-        if (this.vipQueue.length > 0) {
-            return this.vipQueue.shift();
-        } else if (this.regularQueue.length > 0) {
-            return this.regularQueue.shift();
-        }
+    enqueue(item, priority) {
+        const element = { item, priority};
+        let added = false;
 
-        console.log("Queue is empty");
+        for (let i = 0; i < this.queue.length; i++) {
+            if (element.priority < this.queue[i].priority) {
+                this.queue.splice(i, 0, element);
+                added = true;
+                break;
+            }
+        }
+    
+
     }
 }
-
-module.exports = priorityQueue;
