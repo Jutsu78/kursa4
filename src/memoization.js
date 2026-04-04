@@ -1,6 +1,6 @@
 
 function memoize(fn) {
-   const maxSize = 5;
+    const maxSize = 5;
     const cache = new Map();
     return function (...args) {
         const key = JSON.stringify(args);
@@ -15,6 +15,7 @@ function memoize(fn) {
         if (cache.size >= maxSize) {
             const oldekey = cache.keys().next().value;
             cache.delete(oldekey);
+            console.log('[Cache Eviction]', oldekey);
         }
 
         console.log('caching transaction', args);
