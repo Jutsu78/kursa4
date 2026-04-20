@@ -1,4 +1,4 @@
-
+const logger = require('./logger');
 const memoizedConvert = require('./memoization');
 const priorityQueue = require('./priorityQueue');
 
@@ -25,14 +25,14 @@ async function StartSystem() {
 
   for await (const transaction of liveTransactions) {
     const amountInUAH = memoizedConvert(transaction.amount, transaction.currency);
-    console.log('New transaction:', transaction, 'Amount in UAH:', amountInUAH)
+    logger.info({ transaction, amountInUAH }, 'New transaction');
 
     queue.enqueue(transaction, transaction.amount);
-    console.log('added in queue:', transaction.amount, transaction.currency)
+    logger.info({ amount: transaction.amount, currency: transaction.currency }, 'Added in queue');
     tick++;
     if (tick % 2 === 0) {
       const processedTransaction = queue.dequeue();
-      console.log('Processed transaction:', processedTransaction.amount, processedTransaction.currency);
+      logger.info({ processedTransaction }, 'Processed transaction');
     }
 
   }

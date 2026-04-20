@@ -1,4 +1,4 @@
-
+const logger = require('./logger');
 class priorityQueue {
     constructor() {
         this.queue = [];
@@ -25,7 +25,7 @@ class priorityQueue {
 
     dequeue() {
         if (this.queue.length === 0) {
-            console.log("Queue is empty");
+           logger.warn("Queue is empty");
             return null;
         }
 

@@ -1,4 +1,4 @@
-
+const logger = require('./logger');
 function memoize(fn) {
     const maxSize = 5;
     const cache = new Map();
@@ -15,10 +15,10 @@ function memoize(fn) {
         if (cache.size >= maxSize) {
             const oldekey = cache.keys().next().value;
             cache.delete(oldekey);
-            console.log('[Cache Eviction]', oldekey);
+            logger.warn({ oldekey }, 'Cache Eviction');
         }
 
-        console.log('caching transaction', args);
+       logger.info({ args }, 'Caching transaction');
 
 
         cache.set(key, result);
@@ -28,7 +28,7 @@ function memoize(fn) {
 
 const exchangeRates = { USD: 41.5, EUR: 45.2, BTC: 3500000, UAH: 1 };
 function convertor(amount, currency) {
-    console.log('Calculating...', amount, currency);
+    logger.info({ amount, currency }, 'Calculating...');
     currency = exchangeRates[currency];
     return amount * currency;
 }
