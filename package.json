@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/Jutsu78/kursa4/issues"
   },
-  "homepage": "https://github.com/Jutsu78/kursa4#readme"
+  "homepage": "https://github.com/Jutsu78/kursa4#readme",
+  "dependencies": {
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3"
+  }
 }
