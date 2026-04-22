@@ -1,3 +1,4 @@
+
 const logger = require('./logger');
 
 // callback
@@ -11,6 +12,18 @@ function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
             logger.warn({ currentIndex}, "Process stopped with abortcontroller");
             return finalCallback(err,);
         }
+    if (currentIndex >= array.length) {
+        return finalCallback(null, results);
     }
-}
-        
+
+        const item = array[currentIndex];
+
+        asyncPredicate(item, (err, result) => {
+            if (err) {
+                logger.error({ error: error.massage, txid: item.id }, "Error during checking item");
+
+                return finalCallback(err);
+            }
+        }
+        );    
+}}
