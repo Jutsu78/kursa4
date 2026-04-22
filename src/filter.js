@@ -20,10 +20,18 @@ function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
 
         asyncPredicate(item, (err, result) => {
             if (err) {
-                logger.error({ error: error.massage, txid: item.id }, "Error during checking item");
+                logger.error({ error: err.message, txid: item.id }, "Error during checking item");
 
                 return finalCallback(err);
             }
-        }
-        );    
-}}
+            if (result) {
+                results.push(item);
+        } 
+        
+            currentIndex++;
+            processNext();
+        });
+    }
+
+    processNext();
+}
