@@ -65,7 +65,7 @@ function asyncFilterPromise (array, asyncPredicatePromise, signal) {
 
 // demo
 
-const transactons = [
+const transactions = [
     {id: 1, amount: 100, currency: 'UAH'},
     {id: 2, amount: 2000, currency: 'USD'},
     {id: 3, amount: 5000, currency: 'GBP'}
