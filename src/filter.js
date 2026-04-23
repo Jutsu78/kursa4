@@ -77,7 +77,7 @@ logger.info("starting checking...");
 
 asyncFilterCallback(transactions, checkCb, (err, res) => {
     if (err)  logger.error({ err: err.message }, "Callback error");
-    else logger.info({ results: res}); "Callback success";
+    else logger.info({ results: res }, "Callback success");
 });
 
 asyncFilterPromise(transactions, checkPr)
