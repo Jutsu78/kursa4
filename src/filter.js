@@ -2,19 +2,19 @@
 const logger = require('./logger');
 
 // callback
-function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
+function asyncFilterCallback(array, asyncPredicate, finalCallback, signal) {
     const results = [];
     let currentIndex = 0;
 
     function processNext() {
         if (signal && signal.aborted) {
             const err = new Error(" [Callback] Operation cancelled");
-            logger.warn({ currentIndex}, "Process stopped with abortcontroller");
+            logger.warn({ currentIndex }, "Process stopped with abortcontroller");
             return finalCallback(err,);
         }
-    if (currentIndex >= array.length) {
-        return finalCallback(null, results);
-    }
+        if (currentIndex >= array.length) {
+            return finalCallback(null, results);
+        }
 
         const item = array[currentIndex];
 
@@ -26,8 +26,8 @@ function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
             }
             if (result) {
                 results.push(item);
-        } 
-        
+            }
+
             currentIndex++;
             processNext();
         });
@@ -39,54 +39,54 @@ function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
 
 // promises
 
-function asyncFilterPromise (array, asyncPredicatePromise, signal) {
-   return new Promise(async(resolve, reject) => {
-    try{
- const results = [];
+function asyncFilterPromise(array, asyncPredicatePromise, signal) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const results = [];
 
-    for (const item of array) {
-        if (signal && signal.aborted) {
-            const err = new Error(" [Promise] Operation Cancelled");
-            logger.warn("Process Promise stopped with abortcontroller");
-            return reject(err);
+            for (const item of array) {
+                if (signal && signal.aborted) {
+                    const err = new Error(" [Promise] Operation Cancelled");
+                    logger.warn("Process Promise stopped with abortcontroller");
+                    return reject(err);
+                }
+                const IsaMatch = await asyncPredicatePromise(item);
+                if (IsaMatch) {
+                    results.push(item);
+                }
+            }
+            resolve(results);
+        } catch (err) {
+            logger.error({ error: err.message }, "fatal error in promise");
+            reject(err);
         }
-        const IsaMatch = await asyncPredicatePromise(item);
-        if (IsaMatch)  {
-            results.push(item);
-        }
-    }
-    resolve(results);
-} catch (err) {
-    logger.error({ error: err.message},"fatal error in promise");
-    reject(err);
-}
-    });  
+    });
 }
 
 // demo
 
 const transactions = [
-    {id: 1, amount: 100, currency: 'UAH'},
-    {id: 2, amount: 2000, currency: 'USD'},
-    {id: 3, amount: 5000, currency: 'GBP'}
+    { id: 1, amount: 100, currency: 'UAH' },
+    { id: 2, amount: 2000, currency: 'USD' },
+    { id: 3, amount: 5000, currency: 'GBP' }
 ];
 
-const checkCb = (tx, cb) => setTimeout(() => cb (null, tx.amount > 1500), 500);
+const checkCb = (tx, cb) => setTimeout(() => cb(null, tx.amount > 1500), 500);
 const checkPr = (tx) => new Promise((res) => setTimeout(() => res(tx.amount > 1500), 500));
 logger.info("starting checking...");
 
 asyncFilterCallback(transactions, checkCb, (err, res) => {
-    if (err)  logger.error({ err: err.message }, "Callback error");
+    if (err) logger.error({ err: err.message }, "Callback error");
     else logger.info({ results: res }, "Callback success");
 });
 
 asyncFilterPromise(transactions, checkPr)
-    .then (res => logger.info({ results: res }, "Promise success"))
-    .catch (err => logger.error({ err: err.message }, "Promise error"));
+    .then(res => logger.info({ results: res }, "Promise success"))
+    .catch(err => logger.error({ err: err.message }, "Promise error"));
 
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), 100);
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 100);
 
-    asyncFilterPromise(transactions, checkPr, controller.signal)
-    .then (() => logger.info("This shouldn't be logged"))
-    .catch (err => logger.warn({ err: err.message }, "AbortController test successfully stopped the promise"));
+asyncFilterPromise(transactions, checkPr, controller.signal)
+    .then(() => logger.info("This shouldn't be logged"))
+    .catch(err => logger.warn({ err: err.message }, "AbortController test successfully stopped the promise"));
