@@ -83,3 +83,10 @@ asyncFilterCallback(transactions, checkCb, (err, res) => {
 asyncFilterPromise(transactions, checkPr)
     .then (res => logger.info({ results: res }, "Promise success"))
     .catch (err => logger.error({ err: err.message }, "Promise error"));
+
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), 100);
+
+    asyncFilterPromise(transactions, checkPr, controller.signal)
+    .then (() => logger.info("This shouldn't be logged"))
+    .catch (err => logger.warn({ err: err.message }, "AbortController test successfully stopped the promise"));
