@@ -62,3 +62,15 @@ function asyncFilterPromise (array, asyncPredicatePromise, signal) {
 }
     });  
 }
+
+// demo
+
+const transactons = [
+    {id: 1, amount: 100, currency: 'UAH'},
+    {id: 2, amount: 2000, currency: 'USD'},
+    {id: 3, amount: 5000, currency: 'GBP'}
+];
+
+const checkCb = (tx, cb) => setTimeout(() => cb (null, tx.amount > 1500), 500);
+const checkPr = (tx) => new Promise((res) => setTimeout(() => res(tx.amount > 1500), 500));
+logger.info("starting checking...");
