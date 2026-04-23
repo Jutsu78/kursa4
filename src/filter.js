@@ -74,3 +74,12 @@ const transactions = [
 const checkCb = (tx, cb) => setTimeout(() => cb (null, tx.amount > 1500), 500);
 const checkPr = (tx) => new Promise((res) => setTimeout(() => res(tx.amount > 1500), 500));
 logger.info("starting checking...");
+
+asyncFilterCallback(transactions, checkCb, (err, res) => {
+    if (err)  logger.error({ err: err.message }, "Callback error");
+    else logger.info({ results: res}); "Callback success";
+});
+
+asyncFilterPromise(transactions, checkPr)
+    .then (res => logger.info({ results: res }, "Promise success"))
+    .catch (err => logger.error({ err: err.message }, "Promise error"));
