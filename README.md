@@ -7,10 +7,9 @@ project for KPI
 
 Мета: навчитися реалізовувати системи маніторингу, та вцілому покращити свої навички в програмуванні.
 
-Очікуваний результат: Система моніторингу, яка в реальному часі обробляє та відображає зміни курсу валют або криптовалют. (У майбутньому можливе додавання візуалізації даних за допомогою графіків).
-
 Стек технологій
 JavaScript (Node.js)
+Pino.js (логгер)
 
 Основний запланований функціонал: 
  Генерація потоку даних у реальному часі.
@@ -21,7 +20,14 @@ JavaScript (Node.js)
 Як запустити?
 Для запуску генератора транзакцій відкрийте термінал у кореневій папці проєкту та виконайте команду
 npm start
+для запуску фільтрації підозрілих транзакцій (filter.js) треба написати команду node src/filter.js
+це треба зробити тому що вона не інтегрована в кореневий файл генератора 
 
+гайд по структурі відповідності курсової до лабораторних робіт
+1 лаба-src/transactionGenerator.js
+3 лаба-src/memoization.js
+4 лаба-src/priorityQueue.js
+5 лаба-src/filter.js
 
 This project was completed by a 1st-year student of Igor Sikorsky KPI, Oleksii Taraiev
 
@@ -29,10 +35,9 @@ Course project topic: "Real-time monitoring and processing system for financial 
 
 Goal: to learn how to implement monitoring systems, and overall improve my programming skills.
 
-Expected result: A monitoring system that processes and displays changes in exchange rates or cryptocurrencies in real time. (In the future, adding data visualization using charts is possible).
-
 Technology stack
 JavaScript (Node.js)
+Pino.js (logger)
 
 Main planned functionality:
 Real-time data stream generation.
@@ -43,3 +48,12 @@ Event logging and basic access protection.
 How to run?
 To start the transaction generator, open the terminal in the root directory of the project and run the following command
 npm start
+To run the suspicious transaction filter (filter.js), you need to enter the command node src/filter.js
+This is necessary because it is not integrated into the generator’s root file 
+
+
+Guide to the structure of the courseproject in relation to the labs
+1 lab-src/transactionGenerator.js
+3 lab-src/memoization.js
+4 lab-src/priorityQueue.js
+5 lab-src/filter.js
