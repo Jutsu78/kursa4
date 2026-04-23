@@ -35,3 +35,14 @@ function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
 
     processNext();
 }
+
+
+// promises
+
+function asyncFilterPromise (array, asyncPredicatePromise, signal) {
+   return new Promise(async(resolve, reject) => {
+
+   
+    const results = [];
+   }
+}
