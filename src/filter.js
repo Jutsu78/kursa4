@@ -42,10 +42,7 @@ function asyncFilterCallback (array, asyncPredicate, finalCallback, signal) {
 function asyncFilterPromise (array, asyncPredicatePromise, signal) {
    return new Promise(async(resolve, reject) => {
     try{
-
-    }
-    
-    const results = [];
+ const results = [];
 
     for (const item of array) {
         if (signal && signal.aborted) {
@@ -58,3 +55,10 @@ function asyncFilterPromise (array, asyncPredicatePromise, signal) {
             results.push(item);
         }
     }
+    resolve(results);
+} catch (err) {
+    logger.error({ error: err.message},"fatal error in promise");
+    reject(err);
+}
+    });  
+}
