@@ -28,6 +28,8 @@ npm start
 3 лаба-src/memoization.js
 4 лаба-src/priorityQueue.js
 5 лаба-src/filter.js
+6 лаба-src/stream.js
+
 
 This project was completed by a 1st-year student of Igor Sikorsky KPI, Oleksii Taraiev
 
@@ -57,3 +59,4 @@ Guide to the structure of the courseproject in relation to the labs
 3 lab-src/memoization.js
 4 lab-src/priorityQueue.js
 5 lab-src/filter.js
+6 lab-src/stream.js
