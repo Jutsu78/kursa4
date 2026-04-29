@@ -8,16 +8,21 @@ async function* transactionStream(totalRecords) {
 
         if (i === 5) {
             const err = new Error(`corrupted data at index ${i}`);
-            logger.error({index : i }, "producer error (throwing)");
+            logger.error({ index: i }, "producer error (throwing)");
             throw err;
         }
-    
-            yield {
-                id: `TXN-${i}`,
-                amount: Math.floor(Math.random() * 5000) + 100,
-                currency: i % 2 === 0 ? 'USD' : 'EUR',
-                timestamp: new Date().toISOString()
-            };
+
+        yield {
+            id: `TXN-${i}`,
+            amount: Math.floor(Math.random() * 5000) + 100,
+            currency: i % 2 === 0 ? 'USD' : 'EUR',
+            timestamp: new Date().toISOString()
+        };
     }
-                logger.info({ total: totalRecords }, "Stream finished");
-            }
+    logger.info({ total: totalRecords }, "Stream finished");
+}
+
+async function ProcessStream() {
+    logger.info("consumer started");
+    let count = 0;
+}
