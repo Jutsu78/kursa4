@@ -22,7 +22,19 @@ async function* transactionStream(totalRecords) {
     logger.info({ total: totalRecords }, "Stream finished");
 }
 
-async function ProcessStream() {
+async function processStream() {
     logger.info("consumer started");
     let count = 0;
+    try {
+        for await (const tx of transactionStream(10)) {
+            logger.info({ transactionId: tx.id }, "Processed");
+            count++;
+        }
+
+        logger.info({ count }, "consumer finished");
+}   catch (err) {
+    logger.error({ error: err.message }, "consumer error (caught)");
+    }
 }
+
+processStream();
