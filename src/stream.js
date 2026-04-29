@@ -11,5 +11,13 @@ async function* transactionStream(totalRecords) {
             logger.error({index : i }, "producer error (throwing)");
             throw err;
         }
+    
+            yield {
+                id: `TXN-${i}`,
+                amount: Math.floor(Math.random() * 5000) + 100,
+                currency: i % 2 === 0 ? 'USD' : 'EUR',
+                timestamp: new Date().toISOString()
+            };
     }
-}
+                logger.info({ total: totalRecords }, "Stream finished");
+            }
