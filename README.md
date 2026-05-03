@@ -29,6 +29,7 @@ npm start
 4 лаба-src/priorityQueue.js
 5 лаба-src/filter.js
 6 лаба-src/stream.js
+7 лаба-src/eventEmitter.js
 
 
 This project was completed by a 1st-year student of Igor Sikorsky KPI, Oleksii Taraiev
@@ -60,3 +61,4 @@ Guide to the structure of the courseproject in relation to the labs
 4 lab-src/priorityQueue.js
 5 lab-src/filter.js
 6 lab-src/stream.js
+7 lab-src/eventEmitter.js
