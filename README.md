@@ -22,6 +22,8 @@ Pino.js (логгер)
 npm start
 для запуску фільтрації підозрілих транзакцій (filter.js) треба написати команду node src/filter.js
 це треба зробити тому що вона не інтегрована в кореневий файл генератора 
+файли src/stream.js та src/eventEmitter.js покищо також є самостійними і запусаються окремо 
+
 
 гайд по структурі відповідності курсової до лабораторних робіт
 1 лаба-src/transactionGenerator.js
@@ -53,7 +55,7 @@ To start the transaction generator, open the terminal in the root directory of t
 npm start
 To run the suspicious transaction filter (filter.js), you need to enter the command node src/filter.js
 This is necessary because it is not integrated into the generator’s root file 
-
+Currently, the src/stream.js and src/eventEmitter.js modules are standalone and executed independently.
 
 Guide to the structure of the courseproject in relation to the labs
 1 lab-src/transactionGenerator.js
