@@ -11,3 +11,9 @@ const  dummyTokenProvider = {
         process.env.ACCESS_TOKEN = 'new_fresh_token_456';
     }
 };
+
+const baseClient = new BaseHttpClient();
+const jwtStrategy = new JwtStrategy(dummyTokenProvider);
+const authProxy = new AuthProxy(baseClient, jwtStrategy);
+const loggingProxy = new LoggingProxy(authProxy);
+const bankService = new BankApiService(loggingProxy);
