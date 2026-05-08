@@ -21,3 +21,23 @@ async function asyncFetchData(id) {
 async function asyncFailingFetch() {
     return new Promise((_, reject) => setTimeout(() => reject(new Error('Network timeout')), 50));
 }
+
+const decoratedSyncMath = logInfo(syncMathOperation);
+const decoratedSyncFail = logErrorOnly(syncFailingOperation);
+const decoratedAsyncFetch = logInfo(asyncFetchData);
+const decoratedAsyncFailErrorOnly = logErrorOnly(asyncFailingFetch);
+
+async function runDemo() {
+    decoratedSyncMath(5, 10);
+
+    try {
+        decoratedSyncFail();
+    } catch (err) { }
+    await decoratedAsyncFetch(42);
+
+    try {
+        await decoratedAsyncFailErrorOnly();
+    } catch (err) { }
+}
+
+runDemo();
