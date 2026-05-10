@@ -33,6 +33,7 @@ npm start
 6 лаба-src/stream.js
 7 лаба-src/eventEmitter.js
 8 лаба розбита на модулі та підписана від 8.1 до 8.6 
+9 лаба розбита на модулі та підписана від 9.1 до 9.3 
 
 
 This project was completed by a 1st-year student of Igor Sikorsky KPI, Oleksii Taraiev
@@ -65,4 +66,5 @@ Guide to the structure of the courseproject in relation to the labs
 5 lab-src/filter.js
 6 lab-src/stream.js
 7 lab-src/eventEmitter.js
-8 lab has been split into independent modules with files labeled sequentially from 8.1 to 8.6.
+8 lab has been split into independent modules with files labeled sequentially from 8.1 to 8.6
+9 lab has been split into independent modules with files labeled sequentially from 9.1 to 9.3
