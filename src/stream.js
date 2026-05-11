@@ -37,6 +37,7 @@ async function processStream() {
     }
 }
 
-processStream();
-
+if (require.main === module) {
+    processStream();
+}
 module.exports = { transactionStream };

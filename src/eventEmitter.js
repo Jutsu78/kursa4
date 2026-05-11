@@ -44,7 +44,7 @@ class ReactiveEmitter {
         }
     }
 }
-
+if (require.main === module) {
 const emitter = new ReactiveEmitter();
 
 emitter.subscribe('error', (err) => {
@@ -72,5 +72,5 @@ emitter.emit('transaction', { id: 2, amount: 2000 });
 
 unsub1();
 emitter.emit('transaction', { id: 3, amount: 300 });
-
+}
 module.exports = ReactiveEmitter;
