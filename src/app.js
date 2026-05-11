@@ -1,7 +1,7 @@
-const logger = require('./logger'); 
+const logger = require('./logger');
 const { transactionStream } = require('./stream');
 const { asyncFilterPromise } = require('./filter');
-const priorityQueue = require('./priorityQueue'); 
+const priorityQueue = require('./priorityQueue');
 const memoizedConvert = require('./memoization');
 const ReactiveEmitter = require('./eventEmitter');
 
@@ -24,3 +24,20 @@ const dummyTokenProvider = {
         logger.info('token refreshed for API integration');
     }
 };
+
+const bankService = new BankApiService(
+    new LoggingProxy(
+        new AuthProxy(new BaseHttpClient(), new JwtStrategy(dummyTokenProvider)),
+
+    )
+);
+const queue = new priorityQueue();
+const emitter = new ReactiveEmitter();
+
+emitter.subscribe('transaction synced', (tx) => {
+    logger.info({ txId: tx.id, amountUAH: tx.amountInUAH }, '[MONITOR]  transaction has been successfully processed by the bank');
+});
+
+emitter.subscribe('error', (err) => {
+    logger.error({ error: err.message }, '[ALARM] critical error in monitoring system');
+});
