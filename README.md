@@ -60,6 +60,8 @@ Monitoring Reactive event system and multi-level logging.
 How to run?
 The main entry point that integrates all system components is app.js.
 
+Thanks to architectural isolation, you can run any module independently for testing purposes:
+do this with def command node src/...
 
 Guide to the structure of the courseproject in relation to the labs
 src/app.js- Main Entry Point.
