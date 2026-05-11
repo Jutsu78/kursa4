@@ -74,4 +74,15 @@ const runFinancialSystem = logInfo(async () => {
 
             await safeSyncWithBank(txToProcess);
         }
+
+        logger.info('financial system has completed processing transactions');
+        return { status: 'success', processedCount: significantTx.length };
+    } catch (err) {
+        emitter.emit('error', err);
+        throw err;
     }
+});
+
+runFinancialSystem().catch(err => {
+    logger.error({ error: err.message }, 'Financial system failed to process transactions');
+});
