@@ -90,3 +90,5 @@ setTimeout(() => controller.abort(), 100);
 asyncFilterPromise(transactions, checkPr, controller.signal)
     .then(() => logger.info("This shouldn't be logged"))
     .catch(err => logger.warn({ err: err.message }, "AbortController test successfully stopped the promise"));
+
+    module.exports = { asyncFilterPromise };

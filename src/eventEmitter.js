@@ -72,3 +72,5 @@ emitter.emit('transaction', { id: 2, amount: 2000 });
 
 unsub1();
 emitter.emit('transaction', { id: 3, amount: 300 });
+
+module.exports = ReactiveEmitter;

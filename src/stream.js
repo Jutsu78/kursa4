@@ -38,3 +38,5 @@ async function processStream() {
 }
 
 processStream();
+
+module.exports = { transactionStream };
