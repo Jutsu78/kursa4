@@ -11,29 +11,32 @@ project for KPI
 JavaScript (Node.js)
 Pino.js (логгер)
 
-Основний запланований функціонал: 
- Генерація потоку даних у реальному часі.
- Оптимізація обчислень (кешування).
- Черга з пріоритетами для обробки транзакцій.
- Логування подій та базовий захист доступу.
+Основний Реалізований Функціонал
+Генерація даних Потік транзакцій у реальному часі через асинхронні ітератори
+Оптимізація Мемоізація обчислень для повторюваних операцій конвертації
+Пріоритезація Обробка транзакцій з використанням черги з пріоритетами (Priority Queue)
+Архітектура Використання патернів Proxy, Strategy, Decorator та Dependency Injection
+Моніторинг Реактивна система подій та багаторівневе логування
 
 Як запустити?
-Для запуску генератора транзакцій відкрийте термінал у кореневій папці проєкту та виконайте команду
-npm start
-для запуску фільтрації підозрілих транзакцій (filter.js) треба написати команду node src/filter.js
-це треба зробити тому що вона не інтегрована в кореневий файл генератора 
-файли src/stream.js та src/eventEmitter.js покищо також є самостійними і запусаються окремо 
+Основним файлом що об'єднує всі компоненти системи є app.js
+Запуск всієї системи:npm start
 
+Завдяки архітектурній ізоляції ви можете запустити будь-який модуль окремо для тестування
+це робиться звичайним методом ноди node src/...
 
 гайд по структурі відповідності курсової до лабораторних робіт
-1 лаба-src/transactionGenerator.js
-3 лаба-src/memoization.js
-4 лаба-src/priorityQueue.js
-5 лаба-src/filter.js
-6 лаба-src/stream.js
-7 лаба-src/eventEmitter.js
-8 лаба розбита на модулі та підписана від 8.1 до 8.6 
-9 лаба розбита на модулі та підписана від 9.1 до 9.3 
+
+src/app.js- Головна точка входу.
+
+Лаба 1 src/transactionGenerator.js- Логіка генерації даних.
+Лаба 3 src/memoization.js- Кешування результатів обчислень , конвертація валют.
+Лаба 4 src/priorityQueue.js- Структура даних для пріоритетної обробки.
+Лаба 5 src/filter.js- Асинхронна фільтрація потоку, робота з колбеками та промісами .
+Лаба 6 src/stream.js- Робота з асинхронними стрімами.
+Лаба 7 src/eventEmitter.js- Реактивна система подій.
+Лаба 8 Модулі 8.1- 8.6 (Proxy, Strategy, API Service).
+Лаба 9 Модулі 9.1- 9.3 (Декоратори та логування).
 
 
 This project was completed by a 1st-year student of Igor Sikorsky KPI, Oleksii Taraiev
@@ -46,25 +49,25 @@ Technology stack
 JavaScript (Node.js)
 Pino.js (logger)
 
-Main planned functionality:
-Real-time data stream generation.
-Computation optimization (caching).
-Priority queue for transaction processing.
-Event logging and basic access protection.
+Main done functionality:
+Data Generation Real-time transaction streaming using async iterators.
+Optimization Computation memoization for repetitive conversion operations.
+Prioritization Transaction processing using a Priority Queue.
+Architecture Implementation of Proxy, Strategy, Decorator, and Dependency Injection patterns.
+Monitoring Reactive event system and multi-level logging.
+
 
 How to run?
-To start the transaction generator, open the terminal in the root directory of the project and run the following command
-npm start
-To run the suspicious transaction filter (filter.js), you need to enter the command node src/filter.js
-This is necessary because it is not integrated into the generator’s root file 
-Currently, the src/stream.js and src/eventEmitter.js modules are standalone and executed independently.
+The main entry point that integrates all system components is app.js.
+
 
 Guide to the structure of the courseproject in relation to the labs
-1 lab-src/transactionGenerator.js
-3 lab-src/memoization.js
-4 lab-src/priorityQueue.js
-5 lab-src/filter.js
-6 lab-src/stream.js
-7 lab-src/eventEmitter.js
-8 lab has been split into independent modules with files labeled sequentially from 8.1 to 8.6
-9 lab has been split into independent modules with files labeled sequentially from 9.1 to 9.3
+src/app.js- Main Entry Point.
+1 lab-src/transactionGenerator.js- Data generation logic. 
+3 lab-src/memoization.js- results caching, currency convertation.
+4 lab-src/priorityQueue.js- Priority Queue data structure.
+5 lab-src/filter.js- Async stream filtering, work with callbacks and promises.
+6 lab-src/stream.js- Async streams handling.
+7 lab-src/eventEmitter.js- Reactive event system.
+8 lab Modules 8.1 – 8.6 (Proxy, Strategy, API Service).
+9 lab Modules 9.1 – 9.3 (Decorators and Logging).
