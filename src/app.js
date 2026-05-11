@@ -34,10 +34,44 @@ const bankService = new BankApiService(
 const queue = new priorityQueue();
 const emitter = new ReactiveEmitter();
 
-emitter.subscribe('transaction synced', (tx) => {
+emitter.subscribe('transaction_synced', (tx) => {
     logger.info({ txId: tx.id, amountUAH: tx.amountInUAH }, '[MONITOR]  transaction has been successfully processed by the bank');
 });
 
 emitter.subscribe('error', (err) => {
     logger.error({ error: err.message }, '[ALARM] critical error in monitoring system');
 });
+
+const safeSyncWithBank = logError(async (tx) => {
+    await bankService.syncTransactions(tx);
+    emitter.emit('transaction_synced', tx);
+});
+
+const runFinancialSystem = logInfo(async () => {
+    logger.info('starting financial system');
+
+    try {
+
+        const rawTransactions = [];
+        for await (const tx of transactionStream(4)) {
+            rawTransactions.push(tx);
+        }
+
+        const significantTx = await asyncFilterPromise(rawTransactions, async (tx) => tx.amount > 1000);
+        logger.info({ filteredCount: significantTx.length, totalCount: rawTransactions.length }, 'Filtered significant transactions');
+
+
+        for (const tx of significantTx) {
+            queue.enqueue(tx, tx.amount);
+        }
+
+        while (queue.queue.length > 0) {
+            const txToProcess = queue.dequeue();
+
+
+            const amountInUAH = memoizedConvert(txToProcess.amount, txToProcess.currency);
+            txToProcess.amountInUAH = amountInUAH;
+
+            await safeSyncWithBank(txToProcess);
+        }
+    }
